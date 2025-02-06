@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gas Meter OCR</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Gas Meter OCR</h1>
+        <input type="file" id="imageUpload" accept="image/*">
+        <canvas id="imageCanvas"></canvas>
+        <button id="processBtn">Detect & Extract Numbers</button>
+        <div id="output">
+            <h2>Extracted Numbers:</h2>
+            <p>No numbers detected yet.</p>
+        </div>
+    </div>
+</body>
+</html>
