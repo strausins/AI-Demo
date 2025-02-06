@@ -60,10 +60,13 @@ document.getElementById("processBtn").addEventListener("click", async function (
                 let width = bbox.width * canvas.width;
                 let height = bbox.height * canvas.height;
 
-                left += width * 0.01;
-                top += height * 0.05;
-                width *= 0.94;
-                height *= 0.90;
+                // **Crop adjustments**
+                if (pred.tagName === "Used gas") {
+                    left += width * 0.05;  // Reduce left padding (5%)
+                    top += height * 0.08;  // Reduce top padding (8%)
+                    width *= 0.90;  // Make the crop smaller (90% of original width)
+                    height *= 0.80; // Make the crop smaller (85% of original height)
+                }
 
                 // Draw bounding boxes only for "Used gas" and "Serial number"
                 ctx.strokeStyle = "red";
@@ -72,7 +75,7 @@ document.getElementById("processBtn").addEventListener("click", async function (
 
                 const croppedCanvas = document.createElement("canvas");
                 const croppedCtx = croppedCanvas.getContext("2d");
-                croppedCanvas.width = width * 2;
+                croppedCanvas.width = width * 2; // Upscale for better OCR
                 croppedCanvas.height = height * 2;
                 croppedCtx.drawImage(canvas, left, top, width, height, 0, 0, croppedCanvas.width, croppedCanvas.height);
 
